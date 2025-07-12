@@ -1,0 +1,141 @@
+/* LoginSignup.css - Styled using app color palette */
+
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(to right, #6366F1, #A78BFA);
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.login-container {
+  display: flex;
+  width: 900px;
+  height: 550px;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+  background: #fff;
+}
+
+.login-left {
+  flex: 1;
+  background: linear-gradient(135deg, #6366F1, #A78BFA);
+  color: #fff;
+  padding: 40px 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.login-left .logo {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.login-left h2 {
+  font-size: 28px;
+  margin-bottom: 10px;
+}
+
+.login-left p {
+  font-size: 16px;
+  max-width: 250px;
+  line-height: 1.4;
+}
+
+.login-right {
+  flex: 1;
+  background: #ffffff;
+  padding: 40px 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.avatar-placeholder {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: #ddd;
+  margin-bottom: 20px;
+}
+
+.login-msg {
+  font-size: 16px;
+  margin-bottom: 20px;
+  text-align: center;
+  color: #444;
+}
+
+.login-form {
+  width: 100%;
+  max-width: 300px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.login-form input {
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+}
+
+.primary-button {
+  padding: 10px;
+  background-color: #6366F1;
+  border: none;
+  color: white;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: background 0.3s;
+}
+
+.primary-button:hover {
+  opacity: 0.95;
+}
+
+.social-login {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.social-btn {
+  flex: 1;
+  padding: 8px;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+  color: white;
+  border: none;
+}
+
+.social-btn.google {
+  background-color: #DB4437;
+}
+
+.social-btn.facebook {
+  background-color: #3B5998;
+}
+
+.switch-auth {
+  font-size: 14px;
+  color: #333;
+}
+
+.switch-auth span {
+  color: #6366F1;
+  cursor: pointer;
+  font-weight: 500;
+}

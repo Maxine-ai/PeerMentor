@@ -1,0 +1,138 @@
+.homepage-container {
+  padding: 40px;
+  font-family: 'Inter', sans-serif;
+  background-color: #F3F4F6;
+}
+
+/* Search + Filters */
+.search-section {
+  margin-bottom: 40px;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap');
+
+.homepage-tagline {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.homepage-tagline h2 {
+  font-size: 3rem;                    /* 🚀 Much bigger */
+  font-family: 'Dancing Script', cursive;
+  font-weight: 700;                   /* 💥 Bolder stroke */
+  color: #4F46E5;
+  letter-spacing: 1px;
+  line-height: 1.3;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Subtle pop */
+}
+
+
+.search-bar {
+  width: 100%;
+  padding: 12px 16px;
+  border-radius: 8px;
+  border: 1px solid #D1D5DB;
+  font-size: 0.95rem;
+  background-color: #fff;
+  margin-bottom: 14px;
+}
+
+.filter-tabs {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.filter-tabs button {
+  background-color: #E5E7EB;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+
+.filter-tabs .active {
+  background-color: #6366F1;
+  color: white;
+}
+
+.results-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #111827;
+}
+
+/* Mentor Grid + Cards */
+.mentor-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+  justify-content: center;
+}
+
+.mentor-card {
+  background-color: white;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  text-align: center;
+}
+
+.mentor-img {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 10px;
+}
+
+.mentor-card h3 {
+  margin: 6px 0;
+  font-size: 1.1rem;
+  color: #111827;
+}
+
+.role {
+  font-size: 0.85rem;
+  color: #555;
+  margin-bottom: 12px;
+  display: block;
+}
+
+.stats p {
+  font-size: 0.85rem;
+  margin: 4px 0;
+  color: #374151;
+}
+
+.productivity {
+  background-color: #EEF2FF;
+  padding: 8px 12px;
+  border-radius: 8px;
+  margin: 10px 0;
+}
+
+.productivity span {
+  font-size: 0.8rem;
+  color: #6366F1;
+}
+
+.productivity strong {
+  font-size: 1rem;
+  color: #111827;
+}
+
+.connect-btn {
+  background-color: #6366F1;
+  color: white;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+
+.connect-btn:hover {
+  background-color: #4F46E5;
+}

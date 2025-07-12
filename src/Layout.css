@@ -1,0 +1,61 @@
+.layout-header {
+  display: flex;
+  align-items: center;
+  padding: 14px 20px;
+  background-color: #4F46E5;
+  color: white;
+}
+
+.menu-icon {
+  font-size: 1.5rem;
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+  margin-right: 14px;
+}
+
+.logo-mini {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+/* Sidebar styles */
+.sidebar {
+  position: absolute;
+  top: 56px;
+  left: 0;
+  width: 220px;
+  height: 100vh;
+  background-color: #4F46E5;
+  color: white;
+  padding: 24px 16px;
+  box-shadow: 2px 0 8px rgba(0,0,0,0.1);
+  z-index: 99;
+}
+
+/* Overlay behavior (optional) */
+.layout {
+  position: relative;
+}
+
+.nav-icons {
+  list-style: none;
+  padding: 0;
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.nav-icons li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1.1rem;
+  cursor: pointer;
+}
+
+.nav-label {
+  font-size: 0.9rem;
+}
