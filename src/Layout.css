@@ -5,6 +5,14 @@
   background-color: #4F46E5;
   color: white;
 }
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+
+.logo, .logo-mini {
+  font-family: 'Pacifico', cursive;
+  font-size: 2.4rem;
+  color: white;
+  text-shadow: 1px 1px 4px rgba(0,0,0,0.2);
+}
 
 .menu-icon {
   font-size: 1.5rem;

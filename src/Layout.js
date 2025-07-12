@@ -25,13 +25,13 @@ const Layout = () => {
         <button className="menu-icon" onClick={() => setSidebarOpen((prev) => !prev)}>
           ☰
         </button>
-        <div className="logo-mini">MAKE</div>
+        <div className="logo">PeerMentor</div>
       </header>
 
       {/* Sidebar */}
       {isSidebarOpen && (
         <aside className="sidebar" ref={sidebarRef}>
-          <div className="logo">MAKE</div>
+          <div className="logo-mini">PeerMentor</div>
           <ul className="nav-icons">
             <li onClick={() => navigate("/home")}>🏠 <span className="nav-label">Home</span></li>
             <li onClick={() => navigate("/dashboard-overview")}>📋 <span className="nav-label">Dashboard</span></li>
