@@ -1,21 +1,72 @@
-.layout-header {
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+
+/* Layout container fills the viewport */
+.layout {
+  position: relative;
+  min-height: 100vh;
+  min-width: 100vw;
+  width: 0vw;
+  height: 0vh;
   display: flex;
-  align-items: center;
-  padding: 14px 20px;
+  flex-direction: column;
+  background: #dac5ec;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.nav-card-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 24px;
+}
+
+.nav-card {
   background-color: #4F46E5;
   color: white;
+  padding: 12px 16px;
+  border-radius: 12px;
+  font-size: 1.1rem;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  transition: transform 0.2s ease, background-color 0.2s ease;
 }
-@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+
+.nav-card:hover {
+  background-color: #6366F1;
+  transform: scale(1.03);
+}
+
+/* Fixed header at the top */
+.layout-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 64px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 24px;
+  background-color: #373381; /* PeerMentor purple */
+  color: white;
+  z-index: 100;
+}
 
 .logo, .logo-mini {
   font-family: 'Pacifico', cursive;
-  font-size: 2.4rem;
-  color: white;
+  font-size: 2.6rem;
+  color: #e5b1f4;
+  font-weight: bold;
   text-shadow: 1px 1px 4px rgba(0,0,0,0.2);
 }
 
 .menu-icon {
-  font-size: 1.5rem;
+  font-size: 2.4rem;
   background: none;
   border: none;
   color: white;
@@ -24,27 +75,60 @@
 }
 
 .logo-mini {
-  font-size: 1.2rem;
+  font-size: 2.1rem;
   font-weight: bold;
 }
 
-/* Sidebar styles */
+/* Sidebar fixed on the left */
 .sidebar {
-  position: absolute;
-  top: 56px;
+  position: fixed;
+  top: 64px; /* below header */
   left: 0;
-  width: 220px;
-  height: 100vh;
-  background-color: #4F46E5;
+  width: 200px;
+  height: calc(100vh - 64px);
+  background-color: #373381; /* PeerMentor purple */
   color: white;
   padding: 24px 16px;
   box-shadow: 2px 0 8px rgba(0,0,0,0.1);
   z-index: 99;
+  overflow-y: auto;
 }
 
-/* Overlay behavior (optional) */
-.layout {
-  position: relative;
+/* Make the main content area fill all available space */
+.page-content, .content {
+  margin-top: 64px;
+  margin-left: 220px;
+  width: calc(100vw - 220px);
+  min-height: calc(100vh - 64px);
+  padding: 0;
+  box-sizing: border-box;
+  overflow-x: auto;
+  background: #f5f6fa;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+/* Make the main card/container fill the space */
+.page-content > .main-container,
+.content > .main-container {
+  width: 100%;
+  margin: 0;
+  max-width: none;
+  box-shadow: none;
+  border-radius: 0;
+  background: #fff;
+  padding: 2rem;
+  box-sizing: border-box;
+}
+
+/* Remove centering from the main card/container */
+.page-content > div,
+.content > div {
+  width: 100%;
+  margin: 0;
+  max-width: none;
+  box-sizing: border-box;
 }
 
 .nav-icons {
@@ -53,17 +137,56 @@
   margin-top: 20px;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 22px;
 }
 
 .nav-icons li {
   display: flex;
   align-items: center;
   gap: 10px;
-  font-size: 1.1rem;
+  font-size: 2.3rem;
   cursor: pointer;
 }
 
 .nav-label {
-  font-size: 0.9rem;
+  font-size: 1.2rem;
 }
+
+.left-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logout-btn {
+  background-color: #646cc2;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-size: 1.3rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  margin-right: 24px; /* Add this line to move it away from the edge */
+}
+
+.logout-btn:hover {
+  background-color: #2c26dc;
+}
+
+/* Responsive: hide sidebar on small screens */
+@media (max-width: 900px) {
+  .sidebar {
+    left: -220px;
+    transition: left 0.3s;
+  }
+  .sidebar.open {
+    left: 0;
+  }
+  .page-content, .content {
+    margin-left: 0;
+    width: 100vw;
+  }
+}
+
+

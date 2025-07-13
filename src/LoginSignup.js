@@ -1,5 +1,5 @@
-// src/LoginSignup.js - Styled with modern gradient UI and social login options
-import React, { useState } from "react";
+// src/LoginSignup.js
+import React, { useState, useEffect } from "react";
 import { auth } from "./firebase";
 import {
   signInWithEmailAndPassword,
@@ -7,6 +7,7 @@ import {
   GoogleAuthProvider,
   FacebookAuthProvider,
   signInWithPopup,
+  onAuthStateChanged,
 } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import "./LoginSignup.css";
@@ -16,18 +17,31 @@ function LoginSignup() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
+  const [userRole, setUserRole] = useState(() => {
+    const savedRole = localStorage.getItem("userRole");
+    return savedRole === "mentor" || savedRole === "mentee" ? savedRole : "mentee";
+  });
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        localStorage.setItem("loggedIn", "true");
+        localStorage.setItem("user", JSON.stringify(user));
+        localStorage.setItem("userRole", userRole);
+        navigate(userRole === "mentor" ? "/mentor-dashboard" : "/mentee-dashboard");
+      }
+    });
+    return () => unsubscribe();
+  }, []);
 
   const handleAuth = async (e) => {
     e.preventDefault();
     try {
       if (isLogin) {
         await signInWithEmailAndPassword(auth, email, password);
-        alert("Logged in!");
       } else {
         await createUserWithEmailAndPassword(auth, email, password);
-        alert("Account created!");
       }
-      navigate("/");
     } catch (err) {
       alert(err.message);
     }
@@ -35,25 +49,25 @@ function LoginSignup() {
 
   const handleGoogleLogin = async () => {
     try {
-      const provider = new GoogleAuthProvider();
-      await signInWithPopup(auth, provider);
-      alert("Logged in with Google ✅");
-      navigate("/");
+      const result = await signInWithPopup(auth, new GoogleAuthProvider());
+      localStorage.setItem("loggedIn", "true");
+      localStorage.setItem("user", JSON.stringify(result.user));
+      localStorage.setItem("userRole", userRole);
+      navigate(userRole === "mentor" ? "/mentor-dashboard" : "/mentee-dashboard");
     } catch (error) {
       alert("Google sign-in failed");
-      console.error(error);
     }
   };
 
   const handleFacebookLogin = async () => {
     try {
-      const provider = new FacebookAuthProvider();
-      await signInWithPopup(auth, provider);
-      alert("Logged in with Facebook ✅");
-      navigate("/");
+      const result = await signInWithPopup(auth, new FacebookAuthProvider());
+      localStorage.setItem("loggedIn", "true");
+      localStorage.setItem("user", JSON.stringify(result.user));
+      localStorage.setItem("userRole", userRole);
+      navigate(userRole === "mentor" ? "/mentor-dashboard" : "/mentee-dashboard");
     } catch (error) {
       alert("Facebook sign-in failed");
-      console.error(error);
     }
   };
 
@@ -64,11 +78,36 @@ function LoginSignup() {
         <h2>Welcome to the Future of Learning!</h2>
         <p>Join our peer-to-peer community and start collaborating today.</p>
       </div>
+
       <div className="login-right">
         <div className="avatar-placeholder"></div>
         <p className="login-msg">
           {isLogin ? "Login below to get started." : "Create your account to join us."}
         </p>
+
+        {!isLogin && (
+          <div className="role-toggle">
+            <label>
+              <input
+                type="radio"
+                value="mentor"
+                checked={userRole === "mentor"}
+                onChange={() => setUserRole("mentor")}
+              />
+              Join as Mentor
+            </label>
+            <label>
+              <input
+                type="radio"
+                value="mentee"
+                checked={userRole === "mentee"}
+                onChange={() => setUserRole("mentee")}
+              />
+              Join as Mentee
+            </label>
+          </div>
+        )}
+
         <form className="login-form" onSubmit={handleAuth}>
           <input
             type="email"
@@ -88,12 +127,21 @@ function LoginSignup() {
             {isLogin ? "Login" : "Create Account"}
           </button>
         </form>
+
         <div className="social-login">
-          <button onClick={handleGoogleLogin} className="social-btn google">Google</button>
-          <button onClick={handleFacebookLogin} className="social-btn facebook">Facebook</button>
+          <button onClick={handleGoogleLogin} className="social-btn google">
+            Google
+          </button>
+          <button onClick={handleFacebookLogin} className="social-btn facebook">
+            Facebook
+          </button>
         </div>
+
         <p className="switch-auth">
-          {isLogin ? "New User?" : "Already have an account?"} <span onClick={() => setIsLogin(!isLogin)}>{isLogin ? "Register here." : "Login here."}</span>
+          {isLogin ? "New User?" : "Already have an account?"}{" "}
+          <span onClick={() => setIsLogin(!isLogin)}>
+            {isLogin ? "Register here." : "Login here."}
+          </span>
         </p>
       </div>
     </div>
@@ -101,6 +149,10 @@ function LoginSignup() {
 }
 
 export default LoginSignup;
+
+
+
+
 
 
 

@@ -1,13 +1,14 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useNavigate, Outlet } from "react-router-dom";
 import "./Layout.css";
+import { auth } from "./firebase";
+
 
 const Layout = () => {
   const navigate = useNavigate();
   const [isSidebarOpen, setSidebarOpen] = useState(false);
   const sidebarRef = useRef(null);
 
-  // Collapse when clicking outside
   useEffect(() => {
     const handleClickOutside = (e) => {
       if (sidebarRef.current && !sidebarRef.current.contains(e.target)) {
@@ -20,29 +21,49 @@ const Layout = () => {
 
   return (
     <div className="layout">
-      {/* Top bar with menu icon */}
+      {/* Top bar */}
       <header className="layout-header">
-        <button className="menu-icon" onClick={() => setSidebarOpen((prev) => !prev)}>
-          ☰
+        <div className="left-header">
+          <button className="menu-icon" onClick={() => setSidebarOpen((prev) => !prev)}>
+            ☰
+          </button>
+          <div className="logo-mini" style={{ flex: 1, textAlign: "center" }}>PeerMentor</div>
+        </div>
+        <button
+          className="logout-btn"
+          onClick={async () => {
+            await auth.signOut();
+            localStorage.removeItem("loggedIn");
+            localStorage.removeItem("user");
+            navigate("/");
+          }}
+        >
+          Logout 🔓
         </button>
-        <div className="logo">PeerMentor</div>
       </header>
 
-      {/* Sidebar */}
       {isSidebarOpen && (
         <aside className="sidebar" ref={sidebarRef}>
-          <div className="logo-mini">PeerMentor</div>
-          <ul className="nav-icons">
-            <li onClick={() => navigate("/home")}>🏠 <span className="nav-label">Home</span></li>
-            <li onClick={() => navigate("/dashboard-overview")}>📋 <span className="nav-label">Dashboard</span></li>
-            <li onClick={() => navigate("/profile")}>👤 <span className="nav-label">Profile</span></li>
-            <li onClick={() => navigate("/chat")}>💬 <span className="nav-label">Messages</span></li>
-            <li onClick={() => navigate("/settings")}>⚙️ <span className="nav-label">Settings</span></li>
-          </ul>
+          <div className="logo-mini">MENU</div>
+          <div className="nav-card-wrapper">
+            <div className="nav-card" onClick={() => navigate("/home")}>
+              🏠 <span className="nav-label">Home</span>
+            </div>
+            <div className="nav-card" onClick={() => navigate("/dashboard-overview")}>
+              📋 <span className="nav-label">Dashboard</span>
+            </div>
+            <div className="nav-card" onClick={() => navigate("/profile")}>
+              👤 <span className="nav-label">Profile</span>
+            </div>
+            <div className="nav-card" onClick={() => navigate("/chat")}>
+              💬 <span className="nav-label">Messages</span>
+            </div>
+            <div className="nav-card" onClick={() => navigate("/settings")}>
+              ⚙️ <span className="nav-label">Settings</span>
+            </div>
+          </div>
         </aside>
       )}
-
-      {/* Main content */}
       <main className="page-content">
         <Outlet />
       </main>
@@ -51,6 +72,7 @@ const Layout = () => {
 };
 
 export default Layout;
+
 
 
 
