@@ -1,70 +1,102 @@
-# Getting Started with Create React App
+# PeerMentor
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+PeerMentor is a modern web application designed to foster peer-to-peer mentorship and collaboration. Whether you're a student, a junior developer, or an experienced professional, PeerMentor helps you connect with like-minded individuals to learn, share, and grow.
 
-## Available Scripts
+## 🚀 Features
 
-In the project directory, you can run:
+* 🔐 Firebase Authentication (Email/Password, Google, Facebook)
+* 🧠 Smart Dashboard with productivity metrics
+* 📇 Interactive mentor profiles with progress stats
+* 💬 Messaging/chat UI
+* 🖼️ Customizable user profiles
+* 📚 Posts, Publications, and Notes tabs for rich content
+* 🎨 Beautiful UI built with modern React and CSS
 
-### `npm start`
+## 🛠️ Tech Stack
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+* React.js
+* Firebase (Auth, Hosting)
+* React Router
+* CSS (custom, responsive, gradient-based)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## 📂 Folder Structure
 
-### `npm test`
+```
+PeerMentor/
+├── public/
+├── src/
+│   ├── components/        # Shared UI components (optional)
+│   ├── pages/             # Page views (Home, Profile, Dashboard, etc.)
+│   ├── Layout.js          # Sidebar + Top nav wrapper
+│   ├── LoginSignup.js     # Auth page (register + login)
+│   ├── App.js             # Router setup
+│   ├── firebase.js        # Firebase config
+│   └── styles/            # CSS files (e.g., LoginSignup.css, Layout.css)
+├── .firebaserc
+├── firebase.json
+├── .gitignore
+├── package.json
+└── README.md
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## 🔧 Setup Instructions
 
-### `npm run build`
+### 1. Clone the repo
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```bash
+git clone https://github.com/Maxine-ai/PeerMentor.git
+cd PeerMentor
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### 2. Install dependencies
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```bash
+npm install
+```
 
-### `npm run eject`
+### 3. Firebase Configuration
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Create a `.env` file or update `firebase.js` with your Firebase config:
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```js
+// src/firebase.js
+import { initializeApp } from "firebase/app";
+import { getAuth } from "firebase/auth";
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+const firebaseConfig = {
+  apiKey: "YOUR_API_KEY",
+  authDomain: "YOUR_AUTH_DOMAIN",
+  projectId: "YOUR_PROJECT_ID",
+  appId: "YOUR_APP_ID",
+};
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+const app = initializeApp(firebaseConfig);
+export const auth = getAuth(app);
+```
 
-## Learn More
+### 4. Run the app locally
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```bash
+npm start
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### 5. Firebase Deployment
 
-### Code Splitting
+```bash
+npm run build
+firebase deploy
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## 🧪 Tips
 
-### Analyzing the Bundle Size
+* You don’t need to run `npm run build` for local development — just save your files and refresh.
+* Ensure correct routes are nested in `Layout` to maintain nav bar visibility.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## ✨ Credits
 
-### Making a Progressive Web App
+Built with ❤️ by [Maxine-ai](https://github.com/Maxine-ai)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+## 📃 License
 
-### Advanced Configuration
+This project is licensed under the MIT License.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
